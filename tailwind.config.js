@@ -24,6 +24,7 @@ module.exports = {
     },
     backgroundImage: {
       'banner': "url('./assets/banner-bg.png')",
+      'collection': "url('./assets/slide.png')",
     },
     scale: {
       '175': '1.40',
