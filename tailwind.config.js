@@ -27,7 +27,7 @@ module.exports = {
       'collection': "url('./assets/slide.png')",
     },
     scale: {
-      '175': '1.40',
+      '175': '1',
     }
     },
   },

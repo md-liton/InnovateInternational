@@ -1,5 +1,5 @@
 'use client'
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown,IoIosArrowBack ,IoIosArrowForward} from "react-icons/io";
 import { FaSearch } from "react-icons/fa";
 import photo1 from './assets/photo1.png'
 import Image from "next/image";
@@ -14,12 +14,28 @@ import img6 from './assets/img6.png'
 import img7 from './assets/img7.png'
 import img8 from './assets/img8.png'
 import { IoFilterSharp } from "react-icons/io5";
-import { useEffect } from "react";
+import {  } from "react-icons/io";
+import { useEffect, useState } from "react";
 
 
 
 
 export default function Home() {
+
+  const [divone,setDivone]=useState(true)
+  const [divtwo,setDivtwo]=useState(false)
+  const [divthree,setDivthree]=useState(false)
+  const [divfour,setDivfour]=useState(false)
+  const [divfive,setDivfive]=useState(false)
+  const [divsix,setDivsix]=useState(false)
+  const [divseven,setDivseven]=useState(false)
+
+
+  const [slideone,setSlideone]=useState(true)
+  const [slidetwo,setSlidetwo]=useState(false)
+  const [slidethree,setSlidethree]=useState(false)
+  const [slidefour,setSlidefour]=useState(false)
+  const [count, setCount] = useState(0);
 
   useEffect(()=>{
     let item1 = document.querySelector('.item1')
@@ -63,10 +79,148 @@ export default function Home() {
       item4.style.width = '260px';
       item4.style.height = '260px';
     });
+
+  
+    
    
+
     
   },[])
 
+
+  useEffect(()=>{
+    let colordiv = document.querySelector('.colordiv')
+    let one = document.querySelector('.one')
+    let two = document.querySelector('.two')
+    let three = document.querySelector('.three')
+    let four = document.querySelector('.four')
+    let five = document.querySelector('.five')
+    let six = document.querySelector('.six')
+    let seven = document.querySelector('.seven')
+
+
+
+    one.addEventListener('click',function(){
+      setDivone(true)
+      setDivtwo(false)
+      setDivthree(false)
+      setDivfour(false)
+      setDivfive(false)
+      setDivsix(false)
+      setDivseven(false)
+    })
+    two.addEventListener('click',function(){
+      setDivone(false)
+      setDivtwo(true)
+      setDivthree(false)
+      setDivfour(false)
+      setDivfive(false)
+      setDivsix(false)
+      setDivseven(false)
+    })
+    three.addEventListener('click',function(){
+      setDivone(false)
+      setDivtwo(false)
+      setDivthree(true)
+      setDivfour(false)
+      setDivfive(false)
+      setDivsix(false)
+      setDivseven(false)
+    })
+    four.addEventListener('click',function(){
+      setDivone(false)
+      setDivtwo(false)
+      setDivthree(false)
+      setDivfour(true)
+      setDivfive(false)
+      setDivsix(false)
+      setDivseven(false)
+    })
+    five.addEventListener('click',function(){
+      setDivone(false)
+      setDivtwo(false)
+      setDivthree(false)
+      setDivfour(false)
+      setDivfive(true)
+      setDivsix(false)
+      setDivseven(false)
+    })
+
+    six.addEventListener('click',function(){
+      setDivone(false)
+      setDivtwo(false)
+      setDivthree(false)
+      setDivfour(false)
+      setDivfive(false)
+      setDivsix(true)
+      setDivseven(false)
+    })
+    seven.addEventListener('click',function(){
+      setDivone(false)
+      setDivtwo(false)
+      setDivthree(false)
+      setDivfour(false)
+      setDivfive(false)
+      setDivsix(false)
+      setDivseven(true)
+    })
+
+    
+  },[])
+
+ 
+
+  const handleNext =()=>{
+    setCount(count + 1)
+    if (count == 0) {
+      
+      setSlideone(false)
+      setSlidetwo(true)
+    }else if(count==1){
+      setSlideone(false)
+      setSlidetwo(false)
+      setSlidethree(true)
+      
+    }else if (count==2) {
+      setSlideone(false)
+      setSlidetwo(false)
+      setSlidethree(false)
+      setSlidefour(true)
+    }else if (count == 3) {
+      setCount(count-1)
+      
+      
+      
+    }
+    
+    
+    
+  }
+  const handlePrev =()=>{
+    setCount(count-1)
+    if (count == 3) {
+      setSlideone(false)
+      setSlidetwo(false)
+      setSlidethree(true)
+      setSlidefour(false)
+    }else if (count == 2) {
+      setSlideone(false)
+      setSlidetwo(true)
+      setSlidethree(false)
+      setSlidefour(false)
+    }else if (count == 1) {
+
+      setSlideone(true)
+      setSlidetwo(false)
+      setSlidethree(false)
+      setSlidefour(false)
+    }
+    
+    
+    
+  }
+ 
+  
 
 
   return (
@@ -74,7 +228,7 @@ export default function Home() {
 
     {/* navbar part start */}
 
-    <nav className="bg-[#363636] border-b-[1px] border-[#000]">
+    <nav className="bg-[#363636] border-b-[1px] border-[#000] md:block hidden">
       <div className="container">
         <div className="nav_main flex justify-between items-center py-[30px]">
           <div>
@@ -107,7 +261,7 @@ export default function Home() {
 
     {/* banner part start */}
 
-    <section className="py-[130px] relative ">
+    <section className="py-[130px] relative overflow-hidden ">
         <div className="bg-banner bg-cover bg-no-repeat bg-center h-[320px] absolute top-0 left-0 w-full z-[-1]"></div>
         <div className="container ">
           <div className="banner_main flex justify-between items-center  transition-all duration-300 group">
@@ -249,24 +403,24 @@ export default function Home() {
         <div className="h-[150px]"></div>
         <div className=" bg-gradient-to-t from-[#6BE6A8] to-[#3C805D]">
           <div className="container">
-          <div className="w-[430px] py-[80px] text-[#000000] ">
+          <div className="w-[430px] py-[150px] text-[#000000] ">
           <h1 className="text-[40px] font-bold">Overveiw</h1>
           <p className="text-[20px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
           </div>
           </div>
         </div>
       </div>
-      <div className="absolute top-0 right-[-15%]">
-      <div className="flex gap-[50px]">
-        <div className="w-[328px] h-[426px] bg-[#FF9A9A]"></div>
-        <div className="w-[224px] h-[304px] bg-[#CFAAFF]"></div>
-        <div className="w-[224px] h-[304px] bg-[#A0FCD9]"></div>
-        <div className="w-[224px] h-[304px] bg-[#FF9A9A]"></div>
+      <div className={`absolute top-0 duration-300 ${slideone ? ' right-[-15%]' : 'right-[0%]'} ${slidethree ? ' right-[20%]' : ''} ${slidefour ? ' right-[30%]' : ''}`}>
+      <div className="flex gap-[50px] ">
+        <div className={`${slideone ? 'w-[328px] h-[426px] ' : 'w-[224px] h-[304px]'} bg-[#FF9A9A] slide slide1 duration-300`}></div>
+        <div className={`${slidetwo ? 'w-[328px] h-[426px] ' : 'w-[224px] h-[304px]'} bg-[#CFAAFF] slide  slide2 duration-300 active`}></div>
+        <div className={`${slidethree ? 'w-[328px] h-[426px] ' : 'w-[224px] h-[304px]'} bg-[#A0FCD9] slide slide3 duration-300`}></div>
+        <div className={`${slidefour ? 'w-[328px] h-[426px] ' : 'w-[224px] h-[304px]'}  bg-[#FF9A9A] slide slide4 duration-300`}></div>
       </div>
-      {/* <div>
-        <button>prev</button>
-        <button>nex</button>
-      </div> */}
+      </div>
+      <div className="flex gap-[15px] absolute right-[30px] top-[50%]">
+        <button className={`h-[25px] w-[25px] rounded-full border-[2px] border-[#000] flex justify-center items-center prev ${count == 0 ? 'z-[-10]' : ''}`} onClick={handlePrev}><IoIosArrowBack /></button>
+        <button className={`h-[25px] w-[25px] rounded-full border-[2px] border-[#000] flex justify-center items-center next ${count == 3 ? 'z-[-10]' : ''}`}onClick={handleNext}><IoIosArrowForward /></button>
       </div>
     </section>
     {/* slider part end */}
@@ -277,18 +431,18 @@ export default function Home() {
       <div className="collection_main flex items-center">
         <div className="w-1/2  flex gap-[30px] py-[20px]">
         <div>
-        <div className="w-[408px] h-[408px] rounded-[30px] bg-[#0FA958]"></div>
+        <div className={`w-[408px] h-[408px] rounded-[30px] ${divone ? 'bg-[#2E4E3E]' : ''} ${divtwo?'bg-[#26DBDB]':''} ${divthree?'bg-[#B126DB]':'' } ${divfour?'bg-[#26DBDB]':''} ${divfive?'bg-[#2E4E3E]':''} ${divsix?'bg-[#26DBDB]':''} ${divseven?'bg-[#B126DB]':''} colordiv`}></div>
         <div className="flex justify-between mt-[30px]">
-          <div className="w-[120px] h-[120px] rounded-[30px] bg-[#2E4E3E] cursor-pointer"></div>
-          <div className="w-[120px] h-[120px] rounded-[30px] bg-[#26DBDB] cursor-pointer"></div>
-          <div className="w-[120px] h-[120px] rounded-[30px] bg-[#B126DB] cursor-pointer"></div>
+          <div className={`w-[120px] h-[120px] rounded-[30px] bg-[#2E4E3E] cursor-pointer five ${divfive ? 'outline outline-[#000] outline-4': ''} `}></div>
+          <div className={`w-[120px] h-[120px] rounded-[30px] bg-[#26DBDB] cursor-pointer six ${divsix ? 'outline outline-[#000] outline-4': ''}`}></div>
+          <div className={`w-[120px] h-[120px] rounded-[30px] bg-[#B126DB] cursor-pointer seven ${divseven ? 'outline outline-[#000] outline-4': ''}`}></div>
         </div>
         </div>
         <div className="flex flex-col gap-[25px]">
-        <div className="w-[120px] h-[120px] rounded-[30px] bg-[#2E4E3E] outline outline-[#000] outline-4 cursor-pointer"></div>
-          <div className="w-[120px] h-[120px] rounded-[30px] bg-[#26DBDB] cursor-pointer"></div>
-          <div className="w-[120px] h-[120px] rounded-[30px] bg-[#B126DB] cursor-pointer"></div>
-          <div className="w-[120px] h-[120px] rounded-[30px] bg-[#26DBDB] cursor-pointer"></div>
+        <div className={`w-[120px] h-[120px] rounded-[30px] bg-[#2E4E3E] ${divone ? 'outline outline-[#000] outline-4': ''} cursor-pointer one`}></div>
+          <div className={`w-[120px] h-[120px] rounded-[30px] bg-[#26DBDB] cursor-pointer two ${divtwo ? 'outline outline-[#000] outline-4': ''}`}></div>
+          <div className={`w-[120px] h-[120px] rounded-[30px] bg-[#B126DB] cursor-pointer three ${divthree ? 'outline outline-[#000] outline-4': ''}`}></div>
+          <div className={`w-[120px] h-[120px] rounded-[30px] bg-[#26DBDB] cursor-pointer four ${divfour ? 'outline outline-[#000] outline-4': ''}`}></div>
 
         </div>
         </div>
@@ -314,7 +468,7 @@ export default function Home() {
           <h1 className="text-[40px] font-bold">DISCOVER MORE</h1>
           <div className="discover_button flex justify-between items-center mt-[30px]">
           <div className=" flex gap-[15px] ">
-            <button className="py-[10px] px-[18px] bg-[#E9E9E9] rounded-full bg-[#4000FF] text-white">All Categories</button>
+            <button className="py-[10px] px-[18px]  rounded-full bg-[#4000FF] text-white">All Categories</button>
             <button className="py-[10px] px-[18px] bg-[#E9E9E9] rounded-full">Art</button>
             <button className="py-[10px] px-[18px] bg-[#E9E9E9] rounded-full">Celebrities</button>
             <button className="py-[10px] px-[18px] bg-[#E9E9E9] rounded-full">Gaming</button>
@@ -693,6 +847,7 @@ export default function Home() {
 
 
   {/* Discover part end */}
+
 
 
 
